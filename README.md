@@ -1,9 +1,10 @@
 generator-onepiece
 ==================
 
-scaffold out your own real-time app using the generator-onepiece
+In a world: scaffold out your own real-time app with our accumulated best practice.
 
 ## Usage
+
 
 
 ## Generators
