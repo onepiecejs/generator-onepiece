@@ -24,3 +24,4 @@ scaffold out your own real-time app using the generator-onepiece
 
 
 ## License
+[MIT License](http://opensource.org/licenses/MIT)
