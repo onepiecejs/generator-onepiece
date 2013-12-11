@@ -11,7 +11,7 @@ In a word: scaffold out your own real-time app with our accumulated best practic
 
 You can find any handy generators to construct the entire project:
 
-onepiece
+onepiece (top generator)
  - onepiece:schema
  - onepiece:model
  - onepiece:view
