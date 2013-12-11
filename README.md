@@ -14,7 +14,6 @@ You can find any handy generators to construct the entire project:
 onepiece (top generator)
  - onepiece:model
  - onepiece:view
- - onepiece:router
  - onepiece:socketcrud
  - onepiece:all
 
