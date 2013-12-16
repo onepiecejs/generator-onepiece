@@ -1,0 +1,19 @@
+{
+  "name": "<%= _.slugify(appname) %>",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "~2.0.0",
+    "jquery-ui": "~1.10.3",
+    "bootstrap": "~3.0.0",
+    "underscore": "~1.4.4",
+    "backbone": "~1.0.0",
+    "backbone.iobind": "0.4.6",
+    "jade": "*",
+    "async": "*",
+    "markdown": "*",
+    "moment": "~2.0.0",
+    "SlitSlider": "*",
+    "blueimp-file-upload": "*"
+  },
+  "devDependencies": {}
+}

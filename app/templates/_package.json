@@ -1,0 +1,49 @@
+{
+  "name": "<%= _.slugify(appname) %>",
+  "version": "0.0.0",
+  "description": "<%= options.description %>",
+  "private": true,
+  "scripts": {
+    "lintcheck": "scripts/lintcheck",
+    "start": "node app"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  },
+  "dependencies": {
+    "async": "*",
+    "connect-redis": "*",
+    "express": "2.5.x",
+    "gss": "git://github.com/davidben/node-gss.git",
+    "jade": "*",
+    "markdown": "*",
+    "moment": "*",
+    "mongoose": "*",
+    "node-krb5": "*",
+    "nodemailer": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "redis": "*",
+    "socket.io": "*",
+    "xmlrpc": "~1.1.0",
+    "easyimage": "*",
+    "requestify": "*"
+  },
+  "devDependencies": {
+    "expect.js": "*",
+    "grunt": "~0.4.0",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-cssmin": "~0.6.1",
+    "grunt-contrib-jasmine": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "~0.4.3",
+    "grunt-simple-mocha": "~0.4.0",
+    "mongoose-fakery": "*",
+    "nodelint": "*",
+    "optimist": "~0.6.0",
+    "passport-dummy": "~0.0.1",
+    "sinon": "*",
+    "supertest": "*"
+  }
+}
