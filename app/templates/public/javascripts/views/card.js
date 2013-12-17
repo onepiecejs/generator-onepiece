@@ -83,9 +83,6 @@
     template: jade.compile($('#template-entry-view').text()),
 
     render: function() {
-      // var data = this.defaults;
-      // var template = _.template(this._templateContent());
-      // this.$el.html(template(data));
       this.$el.html(this.template(this.defaults));
       return this;
     },
