@@ -91,14 +91,6 @@
       return this._eventHandlers[handlerName];
     },
 
-    _templateContent: function() {
-      return "textarea(placeholder= placeholder)" +
-        "<button class=\"btn btn-primary js-entryview-confirm\">Save</button>" +
-        "<button class=\"btn js-entryview-cancel\">Cancel</button>" +
-        "<div class=\"item-time\"><div class=\"js-create-time\"></div>" +
-        "<div class=\"js-modify-time\"></div></div>";
-    },
-
     _handleCustomButtons: function(buttons) {
       var i = buttons.length - 1;
       for (i; i >= 0; i--) {
