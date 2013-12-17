@@ -8,7 +8,12 @@ var OnepieceGenerator = module.exports = function OnepieceGenerator(args, option
   yeoman.generators.Base.apply(this, arguments);
 
   this.on('end', function () {
-    // this.installDependencies({ skipInstall: options['skip-install'] });
+    this.installDependencies({
+      skipInstall: options['skip-install'],
+      callback: function () {
+        this.spawnCommand('node', ['scripts/db_init_label_metadata.js']);
+      }.bind(this)
+    });
   });
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -41,6 +46,7 @@ OnepieceGenerator.prototype.app = function app() {
   this.directory('models', 'models');
   this.directory('public', 'public');
   this.directory('routes', 'routes');
+  this.directory('scripts', 'scripts');
   this.directory('services', 'services');
   this.directory('sockets', 'sockets');
   this.directory('spec', 'spec');
