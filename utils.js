@@ -9,10 +9,10 @@ exports.addScriptTag = function(type, newFileName) {
   var scriptTagContent;
   if (type === 'model') {
     scriptTagContent = '    script(type="text/javascript", ' +
-      'src="/javascripts/models/'+ newFileName +')\n';
+      'src="/javascripts/models/'+ newFileName +'")\n';
   } else {
     scriptTagContent = '    script(type="text/javascript", ' +
-      'src="/javascripts/views/'+ newFileName +')\n';
+      'src="/javascripts/views/'+ newFileName +'")\n';
   }
 
   fs.readFile(targetFileName, function(err, buffer) {
