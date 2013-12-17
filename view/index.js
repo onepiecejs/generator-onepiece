@@ -2,6 +2,7 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
+var onepieceUtils = require('../utils.js');
 
 var ViewGenerator = module.exports = function ViewGenerator(args, options, config) {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -9,13 +10,15 @@ var ViewGenerator = module.exports = function ViewGenerator(args, options, confi
   yeoman.generators.NamedBase.apply(this, arguments);
 
   console.log('You called the view subgenerator with the argument ' + this.name + '.');
-
-  this.sourceRoot(path.join(__dirname, '/templates'));
-  this.destinationRoot('public/javascripts/views');
 };
 
 util.inherits(ViewGenerator, yeoman.generators.NamedBase);
 
 ViewGenerator.prototype.createViewFile = function createViewFile() {
-  this.copy('view.js', this.name + '.js');
+  var sourceRoot = path.join(__dirname, '/templates/');
+  var destinationRoot = 'public/javascripts/views/';
+
+  this.copy(sourceRoot + 'view.js', destinationRoot + this.name + '.js');
+
+  onepieceUtils.addScriptTag('view', this.name + '.js');
 };
