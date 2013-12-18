@@ -15,7 +15,6 @@ onepiece (top generator)
  - onepiece:model
  - onepiece:view
  - onepiece:socketcrud
- - onepiece:all
 
 
 ## Typical workflow
