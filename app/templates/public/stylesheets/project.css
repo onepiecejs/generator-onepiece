@@ -58,11 +58,13 @@ a:link, a:visited {
 .footer p:last-child, .footer p:nth-child(2){
     float: right;
 }
-.hss-logo{
+.dev-team-logo{
     margin-top: 0;
-    background-size: 70%;
     height: 24px;
     width: 24px;
+    float: left;
+    background: url("../images/dev-team-logo.png") no-repeat;
+    background-size: 70%;
 }
 .copyright{
     margin-left: 0;
@@ -311,7 +313,7 @@ a:hover{
     cursor: pointer;
 }
 #eso-topbar .logo{
-    background: url(../images/logo.png) no-repeat 3px 5px;
+    background: url(../images/app-logo.png) no-repeat 3px 5px;
     height: 30px;
     width: 50px;
     margin-top:	-6px;

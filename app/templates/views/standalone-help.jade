@@ -14,7 +14,6 @@ html
     div#wrapper
       header#eso-topbar.clearfix
         a(href="/",title="go back home",class="logo")
-        a(href="#{links.hssPortal}", target="_blank", class="eso-logo") Developed by HSS
       div.help-content
           h1 <%= _(appname).camelize().capitalize() %> Help Document
           article
@@ -155,10 +154,8 @@ html
                       td
                 p Note: x(nonsupport), √-(partial support), √(widespread support). Chrome and Safari versions are to be determined.
       footer(class="footer")
-        div(class="hss-logo")
+        div(class="dev-team-logo")
         div(class="copyright")
-            p
-              | Version #{version}
-              a(href="#{links.bugzilla}", target="_blank") Report an Issue
+            p Version #{version}
             p INTERNAL USE ONLY
-            p Copyright &copy; 2013 Red Hat, Inc. All rights reserved.
+            p Copyright &copy; ... All rights reserved.
