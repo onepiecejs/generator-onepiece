@@ -316,7 +316,10 @@
     },
 
     render: function() {
-      this.$el.html(this.template(this.model.toJSON()));
+      var item = this.model.toJSON();
+      item.contents = item.content;
+      this.$el.html(this.template(item));
+
       if (this.model.get("checked")) {
         this.$el.addClass("checked");
       }

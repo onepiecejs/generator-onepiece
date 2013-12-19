@@ -1,6 +1,6 @@
 <% var namespace = _.camelize(appname).toLowerCase(); %>
 script#template-card-checkitem(type="text/template")
-  |p.js-check-item-text(title="Edit Content")= <%= namespace %>.utils.safeString(content)
+  |p.js-check-item-text(title="Edit Content")= <%= namespace %>.utils.safeString(contents)
   |div.checkbox.js-item-checkbox
   |  span
   |a.delete.delete-item.js-item-delete
