@@ -1,3 +1,4 @@
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 describe('sycnCardBadges',function(){
   var view;
   var badges = {
@@ -11,13 +12,13 @@ describe('sycnCardBadges',function(){
     $('<div class="list-content"></div>').appendTo('body');
     loadFixtures('cardBadges.html');
 
-    var card = new cantas.models.Card({
+    var card = new <%= namespace %>.models.Card({
       title: "test card badges",
       assignees: [],
       badges: badges
     });
 
-    view = new cantas.views.CardView({
+    view = new <%= namespace %>.views.CardView({
       model: card,
       attributes: {index: 1}
     });

@@ -1,3 +1,4 @@
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 describe("PublicBoardMemberTest", function () {
   var isMember = true,
     board,
@@ -6,13 +7,13 @@ describe("PublicBoardMemberTest", function () {
     activityCollection,
     activityCollectionView,
     boardActiveUserView;
-  window.cantas.isBoardMember = isMember;
+  window.<%= namespace %>.isBoardMember = isMember;
 
   beforeEach(function () {
     $('<div class="content"></div>').appendTo('body');
     loadFixtures("boardView.html");
 
-    board = new cantas.models.Board({
+    board = new <%= namespace %>.models.Board({
       _id: "51c2adf162c1edba14000070",
       creatorId: "51c2adf162c1edba14000070",
       title: "Public Board for testing",
@@ -21,19 +22,19 @@ describe("PublicBoardMemberTest", function () {
       isPublic: true
     });
     visitors = [];
-    boardView = new cantas.views.BoardView({
+    boardView = new <%= namespace %>.views.BoardView({
       el: $('.content'),
       model: board,
       isMember: isMember,
-      visitors: new cantas.models.BoardVisitorCollection(visitors)
+      visitors: new <%= namespace %>.models.BoardVisitorCollection(visitors)
     });
-    cantas.appRouter.currentView = boardView;
-    activityCollection = new cantas.models.ActivityCollection();
-    activityCollectionView = new cantas.views.ActivityCollectionView({
+    <%= namespace %>.appRouter.currentView = boardView;
+    activityCollection = new <%= namespace %>.models.ActivityCollection();
+    activityCollectionView = new <%= namespace %>.views.ActivityCollectionView({
       collection: activityCollection
     });
-    boardActiveUserView = new cantas.views.BoardActiveUserCollectionView({
-      collection: new cantas.models.BoardVisitorCollection(visitors),
+    boardActiveUserView = new <%= namespace %>.views.BoardActiveUserCollectionView({
+      collection: new <%= namespace %>.models.BoardVisitorCollection(visitors),
       boardId: board._id
     });
 
@@ -83,13 +84,13 @@ describe("PublicBoardNonMemberTest", function () {
     activityCollection,
     activityCollectionView,
     boardActiveUserView;
-  window.cantas.isBoardMember = isMember;
+  window.<%= namespace %>.isBoardMember = isMember;
 
   beforeEach(function () {
     $('<div class="content"></div>').appendTo('body');
     loadFixtures("boardView.html");
 
-    board = new cantas.models.Board({
+    board = new <%= namespace %>.models.Board({
       _id: "51c2adf162c1edba14000070",
       creatorId: "51c2adf162c1edba14000070",
       title: "Public Board for testing",
@@ -98,19 +99,19 @@ describe("PublicBoardNonMemberTest", function () {
       isPublic: true
     });
     visitors = [];
-    boardView = new cantas.views.BoardView({
+    boardView = new <%= namespace %>.views.BoardView({
       el: $('.content'),
       model: board,
       isMember: isMember,
-      visitors: new cantas.models.BoardVisitorCollection(visitors)
+      visitors: new <%= namespace %>.models.BoardVisitorCollection(visitors)
     });
-    cantas.appRouter.currentView = boardView;
-    activityCollection = new cantas.models.ActivityCollection();
-    activityCollectionView = new cantas.views.ActivityCollectionView({
+    <%= namespace %>.appRouter.currentView = boardView;
+    activityCollection = new <%= namespace %>.models.ActivityCollection();
+    activityCollectionView = new <%= namespace %>.views.ActivityCollectionView({
       collection: activityCollection
     });
-    boardActiveUserView = new cantas.views.BoardActiveUserCollectionView({
-      collection: new cantas.models.BoardVisitorCollection(visitors),
+    boardActiveUserView = new <%= namespace %>.views.BoardActiveUserCollectionView({
+      collection: new <%= namespace %>.models.BoardVisitorCollection(visitors),
       boardId: board._id
     });
 

@@ -1,3 +1,4 @@
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 describe('unselectLabel',function(){
   var labelAssignView;
   var template_data;
@@ -5,9 +6,9 @@ describe('unselectLabel',function(){
   beforeEach(function(){
     $('<div class="window-label"></div>').appendTo('body');
 
-    labelAssignView = new cantas.views.LabelAssignView({
-      collection: new cantas.models.CardLabelRelationCollection,
-      card: new cantas.models.Card({
+    labelAssignView = new <%= namespace %>.views.LabelAssignView({
+      collection: new <%= namespace %>.models.CardLabelRelationCollection,
+      card: new <%= namespace %>.models.Card({
         title: 'good luck',
         creatorId: '516f593cbd645e7306000001',
         listId: '51cb97495bffe9ba08000003',
@@ -25,7 +26,7 @@ describe('unselectLabel',function(){
 
     labelAssignView.$el.html(labelAssignView.template(template_data)).appendTo('body');
 
-    relation = new cantas.models.CardLabelRelation({
+    relation = new <%= namespace %>.models.CardLabelRelation({
       _id: '51cb974c5bffe9ba08000011',
       boardId: '51cb97495bffe9ba08000001',
       cardId: '51cb974c5bffe9ba0800000f',
@@ -33,7 +34,7 @@ describe('unselectLabel',function(){
       selected: true
     });
 
-    labelAssignView.collection = new cantas.models.CardLabelRelationCollection([relation]);
+    labelAssignView.collection = new <%= namespace %>.models.CardLabelRelationCollection([relation]);
 
     spyOn(relation, "patch").andCallFake(function() {});
   });

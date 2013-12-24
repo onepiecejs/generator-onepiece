@@ -1,5 +1,6 @@
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 describe( "validate email address", function () {
-  var checkEmail = cantas.utils.checkEmail;
+  var checkEmail = <%= namespace %>.utils.checkEmail;
 
   it("It's a valid email address", function () {
     expect(checkEmail("example@redhat.com")).toBe(true);

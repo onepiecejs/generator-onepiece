@@ -2,7 +2,7 @@
 (function(module) {
 
   "use strict";
-
+  <% var namespace = _.camelize(appname).toLowerCase(); %>
   var async = require("async");
   var util = require("util");
   var signals = require("./signals");
@@ -17,7 +17,7 @@
   var Vote = require("../models/vote");
   var handlers = require('./signalHandlers');
 
-  var cantasUtils = require('../services/utils');
+  var <%= namespace %>Utils = require('../services/utils');
   var notification = require('../services/notification');
   var Sites = require("../services/sites");
 
@@ -71,7 +71,7 @@
     var card = args.instance;
     if (card.subscribeUserIds) {
       var user = args.socket.getCurrentUser();
-      var safeTitle = cantasUtils.safeMarkdownString(card.title);
+      var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
       var notifyMsg = null;
       if (args.changeFields.indexOf('title') >= 0) {
         notifyMsg = util.format("%s changed card from '%s' to [%s](%s)",
@@ -117,7 +117,7 @@
             // send notification and email to subscribers
             if (card.subscribeUserIds) {
               var user = args.socket.getCurrentUser();
-              var safeTitle = cantasUtils.safeMarkdownString(card.title);
+              var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
               var notifyMsg = util.format("%s added a comment in card [%s](%s).",
                 user.username, safeTitle, card.url);
               card.getSubscribeUsers(function(err, subscribers) {
@@ -153,7 +153,7 @@
     Card.findById(cardId, 'title subscribeUserIds', function(err, card) {
       if (card && card.subscribeUserIds) {
         var user = args.socket.getCurrentUser();
-        var safeTitle = cantasUtils.safeMarkdownString(card.title);
+        var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
         if (args.changeFields.indexOf('content') >= 0) {
           var originContent = args.originData.content;
           var currentContent = args.instance.content;
@@ -192,7 +192,7 @@
     Card.findById(cardId, 'title subscribeUserIds', function(err, card) {
       if (card && card.subscribeUserIds) {
         var user = args.socket.getCurrentUser();
-        var safeTitle = cantasUtils.safeMarkdownString(card.title);
+        var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
         var notifyMsg = util.format("%s added a checklist '%s' in card [%s](%s).",
           user.username, args.instance.title, safeTitle, card.url);
         card.getSubscribeUsers(function(err, subscribers) {
@@ -221,7 +221,7 @@
               Checklist.findById(checklistId, 'title', function(err, checklist) {
                 if (checklist) {
                   var user = args.socket.getCurrentUser();
-                  var safeTitle = cantasUtils.safeMarkdownString(card.title);
+                  var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
                   var notifyMsg = util.format("%s added a checklistItem to" +
                                   " " + "checklist '%s' in card [%s](%s).",
                       user.username, checklist.title, safeTitle, card.url);
@@ -260,7 +260,7 @@
           Checklist.findById(args.instance.checklistId, 'title', function(err, checklist) {
             if (checklist) {
               var user = args.socket.getCurrentUser();
-              var safeTitle = cantasUtils.safeMarkdownString(card.title);
+              var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
               var notifyMsg = null;
               if (args.changeFields.indexOf('checked') >= 0) {
                 if (args.instance.checked && !args.originData.checked) {
@@ -304,7 +304,7 @@
     Card.findById(cardId, 'title subscribeUserIds', function(err, card) {
       if (card && card.subscribeUserIds) {
         var user = args.socket.getCurrentUser();
-        var safeTitle = cantasUtils.safeMarkdownString(card.title);
+        var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
         var notifyMsg = util.format("%s updated labels in card [%s](%s).",
             user.username, safeTitle, card.url);
         card.getSubscribeUsers(function(err, subscribers) {
@@ -334,7 +334,7 @@
           Checklist.findById(args.instance.checklistId, 'title', function(err, checklist) {
             if (checklist) {
               var user = args.socket.getCurrentUser();
-              var safeTitle = cantasUtils.safeMarkdownString(card.title);
+              var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
               var notifyMsg = util.format("%s deleted checklistItem '%s'" +
                   " " + "from checklist '%s' in card [%s](%s).",
                   user.username, args.instance.content,
@@ -360,7 +360,7 @@
       if (card) {
         // send notification and email to subscribers
         var user = args.socket.getCurrentUser();
-        var safeTitle = cantasUtils.safeMarkdownString(card.title);
+        var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
         var notifyMsg = util.format("%s deleted checklist '%s' from card [%s](%s).",
             user.username, args.instance.title, safeTitle, card.url);
         card.getSubscribeUsers(function(err, subscribers) {
@@ -387,7 +387,7 @@
             var user = args.socket.getCurrentUser();
             var handledFileName = args.instance.name;
             var fileName = handledFileName.slice(handledFileName.indexOf('-') + 1);
-            var safeTitle = cantasUtils.safeMarkdownString(card.title);
+            var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
             var notifyMsg = util.format("%s uploaded attachment '%s' to card [%s](%s).",
                 user.username, fileName, safeTitle, card.url);
             card.getSubscribeUsers(function(err, subscribers) {
@@ -415,7 +415,7 @@
 
             // send notification to subscribers
             var user = args.socket.getCurrentUser();
-            var safeTitle = cantasUtils.safeMarkdownString(card.title);
+            var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
             var handledFileName = args.instance.name;
             var fileName = handledFileName.slice(handledFileName.indexOf('-') + 1);
             var notifyMsg = util.format("%s deleted attachment '%s' from card [%s](%s).",
@@ -457,7 +457,7 @@
         // send notifications to card subscribers
         if (card.subscribeUserIds) {
           var user = args.socket.getCurrentUser();
-          var safeTitle = cantasUtils.safeMarkdownString(card.title);
+          var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
           var handledFileName = args.instance.name;
           var fileName = handledFileName.slice(handledFileName.indexOf('-') + 1);
           var notifyMsg = null;
@@ -505,7 +505,7 @@
     Card.findById(cardId, 'title subscribeUserIds', function(err, card) {
       if (card && card.subscribeUserIds) {
         var user = args.socket.getCurrentUser();
-        var safeTitle = cantasUtils.safeMarkdownString(card.title);
+        var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
         var notifyMsg = null;
         if (args.instance.yesOrNo) {
           notifyMsg = util.format("%s voted agree to card [%s](%s).",
@@ -534,7 +534,7 @@
     Card.findById(cardId, 'title subscribeUserIds', function(err, card) {
       if (card) {
         var user = args.socket.getCurrentUser();
-        var safeTitle = cantasUtils.safeMarkdownString(card.title);
+        var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
         var notifyMsg = null;
         if (args.instance.yesOrNo) {
           notifyMsg = util.format("%s changed vote to agree to card [%s](%s).",
@@ -563,7 +563,7 @@
     Card.findById(cardId, 'title subscribeUserIds', function(err, card) {
       if (card) {
         var user = args.socket.getCurrentUser();
-        var safeTitle = cantasUtils.safeMarkdownString(card.title);
+        var safeTitle = <%= namespace %>Utils.safeMarkdownString(card.title);
         var notifyMsg = null;
         if (args.instance.yesOrNo) {
           notifyMsg = util.format("%s cancelled vote agree to card [%s](%s).",

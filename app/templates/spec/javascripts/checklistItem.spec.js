@@ -1,3 +1,4 @@
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 describe("DeleteChecklistItemTest", function() {
   var checklist;
   var checklistView;
@@ -5,23 +6,23 @@ describe("DeleteChecklistItemTest", function() {
   var checklistItemView;
 
   beforeEach(function(){
-    checklist = new cantas.models.Checklist();
-    checklistView = new cantas.views.ChecklistView({model: checklist});
-    cantas.appRouter.currentView = checklistView;
+    checklist = new <%= namespace %>.models.Checklist();
+    checklistView = new <%= namespace %>.views.ChecklistView({model: checklist});
+    <%= namespace %>.appRouter.currentView = checklistView;
 
-    checklistItem = new cantas.models.ChecklistItem({
+    checklistItem = new <%= namespace %>.models.ChecklistItem({
       content: "Delete the checklist item",
       checklistId: "51c2adf162c1edba14000074",
       authorId: "51c2adf162c1edba14000070"
     });
 
-    checklistItemView = new cantas.views.ChecklistItemView({
+    checklistItemView = new <%= namespace %>.views.ChecklistItemView({
       model: checklistItem,
       parentView: checklistView
     });
 
-    checklistItemView.confirmDialogView = new cantas.views.ConfirmDialogView();
-    window.cantas.isBoardMember = true;
+    checklistItemView.confirmDialogView = new <%= namespace %>.views.ConfirmDialogView();
+    window.<%= namespace %>.isBoardMember = true;
 
     loadFixtures("checklistItem.html");
     checklistItemView.template = jade.compile($("#template-card-checkitem").text());
@@ -63,18 +64,18 @@ describe("CheckoutChecklistItemTest", function() {
   var checklistItem;
   beforeEach(function() {
 
-    checklistItem = new cantas.models.ChecklistItem({
+    checklistItem = new <%= namespace %>.models.ChecklistItem({
       content: "Delete the checklist item",
       checklistId: "51c2adf162c1edba14000074",
       authorId: "51c2adf162c1edba14000070"
     });
 
-    checklistItemView = new cantas.views.ChecklistItemView({
+    checklistItemView = new <%= namespace %>.views.ChecklistItemView({
       model: checklistItem,
       parentView: null
     });
 
-    window.cantas.isBoardMember = true;
+    window.<%= namespace %>.isBoardMember = true;
 
     loadFixtures("checklistItem.html");
     checklistItemView.template = jade.compile($("#template-card-checkitem").text());
@@ -89,7 +90,7 @@ describe("CheckoutChecklistItemTest", function() {
     checklistItemView.$el.find("div.js-item-checkbox").trigger("click");
     expect(checklistItem.patch).toHaveBeenCalled();
   });
-})
+});
 
 
 describe("EditChecklistItemTest",function() {
@@ -102,56 +103,36 @@ describe("EditChecklistItemTest",function() {
 
   beforeEach(function() {
 
-    checklist = new cantas.models.Checklist({
+    checklist = new <%= namespace %>.models.Checklist({
       title: "test checklist",
       authorId: "51c2adf162c1edba14000070"
     });
 
-    checklistView = new cantas.views.ChecklistView({
+    checklistView = new <%= namespace %>.views.ChecklistView({
       model: checklist,
     });
 
-    checklistItem = new cantas.models.ChecklistItem({
+    checklistItem = new <%= namespace %>.models.ChecklistItem({
       content: "update the checklist item",
       checklistId: checklist.id,
       authorId: "51c2adf162c1edba14000070"
     });
 
-    checklistItemView = new cantas.views.ChecklistItemView({
+    checklistItemView = new <%= namespace %>.views.ChecklistItemView({
       model: checklistItem,
       parentView: checklistView
     });
 
-    checklistItemInputView = new cantas.views.ChecklistItemInputView({
+    checklistItemInputView = new <%= namespace %>.views.ChecklistItemInputView({
       model: checklistItem,
       parentView: checklistItemView.options.parentView
     });
 
-    entryView = new cantas.views.EntryView({
-      placeholder: "Item Content",
-      buttons: [{
-        name: "confirm",
-        eventHandler: checklistItemInputView.onConfirmClick,
-        data: {
-          checklistView: checklistItemInputView.options.parentView,
-          parentView: checklistItemInputView
-        }
-      }, {
-        name: "cancel",
-        eventHandler: checklistItemInputView.onCancelClick,
-        data: {
-          checklistView: checklistItemInputView.options.parentView,
-          parentView: checklistItemInputView
-        }
-      }]
-     });
-
-    window.cantas.isBoardMember = true;
+    window.<%= namespace %>.isBoardMember = true;
 
     loadFixtures("checklistItem.html");
-    checklistItemView.template = jade.compile($("#template-card-checkitem").text());
+    checklistItemInputView.inputView.template = jade.compile($("#template-entry-view").text());
     checklistItemInputView.render().$el.appendTo("body");
-
     checklistView.itemViews[checklistItem.id] = checklistItemView;
 
     spyOn(checklistItem, "patch").andCallFake(function() {});

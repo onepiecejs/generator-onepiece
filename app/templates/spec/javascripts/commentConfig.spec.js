@@ -1,11 +1,12 @@
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 describe('Comment configuration test', function() {
   var boardModel;
   var commentConfig;
 
   beforeEach(function() {
     $('<dl class="js-comment"></dl>').appendTo('body');
-    boardModel = new cantas.models.Board({ commentStatus: 'enabled' });
-    commentConfig = new cantas.views.CommentConfig({
+    boardModel = new <%= namespace %>.models.Board({ commentStatus: 'enabled' });
+    commentConfig = new <%= namespace %>.views.CommentConfig({
       el: 'dl.js-comment',
       model: boardModel
     });

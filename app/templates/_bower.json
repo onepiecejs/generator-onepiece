@@ -8,7 +8,7 @@
     "underscore": "~1.4.4",
     "backbone": "~1.0.0",
     "backbone.iobind": "0.4.6",
-    "jade": "*",
+    "jade": "0.29.0",
     "async": "*",
     "markdown": "*",
     "moment": "~2.0.0",

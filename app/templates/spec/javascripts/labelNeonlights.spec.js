@@ -1,15 +1,16 @@
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 describe('generateLabelCorrectly',function(){
   var labelNeonLightsView;
 
   beforeEach(function(){
 
-    labelNeonLightsView = new cantas.views.LabelNeonLightsView({
+    labelNeonLightsView = new <%= namespace %>.views.LabelNeonLightsView({
       className: 'card-filter clearfix',
-      collection: new cantas.models.CardLabelRelationCollection([
-        new cantas.models.CardLabelRelation({
+      collection: new <%= namespace %>.models.CardLabelRelationCollection([
+        new <%= namespace %>.models.CardLabelRelation({
           boardId: '51cb97495bffe9ba08000001',
           cardId: '51cb974c5bffe9ba0800000f',
-          labelId: (new cantas.models.Label({
+          labelId: (new <%= namespace %>.models.Label({
             title: 'good luck',
             order: '1',
             color: '#E7BAB6',
@@ -17,10 +18,10 @@ describe('generateLabelCorrectly',function(){
           })).toJSON(),
           selected: true
         }),
-        new cantas.models.CardLabelRelation({
+        new <%= namespace %>.models.CardLabelRelation({
           boardId: '51cb97495bffe9ba08000001',
           cardId: '51cb974c5bffe9ba0800000f',
-          labelId: (new cantas.models.Label({
+          labelId: (new <%= namespace %>.models.Label({
             title: 'bad luck',
             order: '1',
             color: '#E7BAB6',

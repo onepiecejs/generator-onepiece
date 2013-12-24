@@ -1,7 +1,7 @@
 'use strict';
-
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 var mongoose = require('mongoose');
-var dbURI = 'mongodb://localhost/cantas_test';
+var dbURI = 'mongodb://localhost/<%= namespace %>_test';
 var async = require('async');
 
 beforeEach(function (done) {

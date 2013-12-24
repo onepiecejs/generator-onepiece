@@ -1,11 +1,12 @@
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 describe('Vote configuration Test', function() {
   var boardModel;
   var voteConfig;
 
   beforeEach(function() {
     $('<dl class="js-vote"></dl>').appendTo('body');
-    boardModel = new cantas.models.Board({ voteStatus: 'enabled' });
-    voteConfig = new cantas.views.VoteConfig({
+    boardModel = new <%= namespace %>.models.Board({ voteStatus: 'enabled' });
+    voteConfig = new <%= namespace %>.views.VoteConfig({
       el: 'dl.js-vote',
       model: boardModel
     });

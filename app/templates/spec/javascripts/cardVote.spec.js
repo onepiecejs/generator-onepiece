@@ -1,3 +1,4 @@
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 describe("updateCardVoteTest", function() {
   var board;
   var boardView;
@@ -7,7 +8,7 @@ describe("updateCardVoteTest", function() {
 
   beforeEach(function(){
     $('<div class="window-vote"></div>').appendTo('body');
-    board = new cantas.models.Board({
+    board = new <%= namespace %>.models.Board({
       _id: '51c2adf162c1edba14000071',
       creatorId: '51c2adf162c1edba14000070',
       title: 'Public Board for testing',
@@ -17,24 +18,24 @@ describe("updateCardVoteTest", function() {
       voteStatus: 'opened'
     });
 
-    boardView = new cantas.views.BoardView({
+    boardView = new <%= namespace %>.views.BoardView({
       model: board,
       isMember: true,
-      visitors: new cantas.models.BoardVisitorCollection([])
+      visitors: new <%= namespace %>.models.BoardVisitorCollection([])
     });
 
-    cardVoteCollection = new cantas.models.VoteCollection();
+    cardVoteCollection = new <%= namespace %>.models.VoteCollection();
 
-    cardVote = new cantas.models.Vote({
+    cardVote = new <%= namespace %>.models.Vote({
       cardId: '51c2adf162c1edba14000011',
       authorId: '51c2adf162c1edba14000070'
     });
 
     cardVoteCollection.add(cardVote);
 
-    cardVoteView = new cantas.views.CardVoteView({
+    cardVoteView = new <%= namespace %>.views.CardVoteView({
       collection: cardVoteCollection,
-      card: new cantas.models.Card({
+      card: new <%= namespace %>.models.Card({
         _id: '51c2adf162c1edba14000011',
         title: 'test-card',
         creatorId: '51c2adf162c1edba14000070',
@@ -46,13 +47,13 @@ describe("updateCardVoteTest", function() {
 
     loadFixtures('cardVote.html');
 
-    spyOn(cantas.utils, 'getCurrentUser').andCallFake(function() {
+    spyOn(<%= namespace %>.utils, 'getCurrentUser').andCallFake(function() {
       var user = {};
       user.id = '51c2adf162c1edba14000070';
       return user;
     });
 
-    cantas.appRouter.currentView = boardView;
+    <%= namespace %>.appRouter.currentView = boardView;
     cardVoteView.template = jade.compile($("#template-card-vote-view").text());
     cardVoteView.render().$el.appendTo('body');
 

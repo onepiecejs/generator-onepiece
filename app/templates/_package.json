@@ -16,7 +16,7 @@
     "connect-redis": "*",
     "express": "2.5.x",
     "gss": "git://github.com/davidben/node-gss.git",
-    "jade": "*",
+    "jade": "0.29.0",
     "markdown": "*",
     "moment": "*",
     "mongoose": "*",

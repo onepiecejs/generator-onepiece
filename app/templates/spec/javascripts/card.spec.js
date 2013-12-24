@@ -1,3 +1,4 @@
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 describe('CardViewTest', function() {
   var card;
   var cardView;
@@ -7,7 +8,7 @@ describe('CardViewTest', function() {
       checkitems: 0
     };
 
-    card = new cantas.models.Card({
+    card = new <%= namespace %>.models.Card({
       title: 'test-card',
       creatorId: '51c2adf162c1edba14000070',
       description: 'description of card',
@@ -15,19 +16,19 @@ describe('CardViewTest', function() {
       badges: badges
     });
 
-    cardView = new cantas.views.CardView({
+    cardView = new <%= namespace %>.views.CardView({
       model: card,
       attributes: {index: 0}
     });
 
-    window.cantas.isBoardMember = false;
-    cantas.appRouter = new Backbone.Router;
+    window.<%= namespace %>.isBoardMember = false;
+    <%= namespace %>.appRouter = new Backbone.Router;
 
     loadFixtures("cardBadges.html");
     cardView.template = jade.compile($('#template-card-view').text());
     cardView.render().$el.appendTo('body');
 
-    spyOn(cantas.appRouter, 'navigate').andReturn(true);
+    spyOn(<%= namespace %>.appRouter, 'navigate').andReturn(true);
 
     spyOn(cardView, 'showCardMenu').andCallFake(function() {});
     spyOn(cardView, 'showCardSettingIcon').andCallFake(function() {});
@@ -64,24 +65,24 @@ describe('Card detail page test', function() {
     $('<div id="card-detail"></div>').appendTo('body');
     loadFixtures('cardDetail.html');
 
-    card = new cantas.models.Card({
+    card = new <%= namespace %>.models.Card({
       title: 'test-card',
       creatorId: '51c2adf162c1edba14000070',
       description: 'description of card',
       assignees: []
     });
 
-    var board = new cantas.models.Board({});
-    var boardView = new cantas.views.BoardView({
+    var board = new <%= namespace %>.models.Board({});
+    var boardView = new <%= namespace %>.views.BoardView({
       model: board,
       isMember: true,
       visitors: [],
     });
 
-    cardLabelRelationCollection = new cantas.models.CardLabelRelationCollection;
-    voteCollection = new cantas.models.VoteCollection;
+    cardLabelRelationCollection = new <%= namespace %>.models.CardLabelRelationCollection;
+    voteCollection = new <%= namespace %>.models.VoteCollection;
 
-    cardDetailView = new cantas.views.CardDetailsView({
+    cardDetailView = new <%= namespace %>.views.CardDetailsView({
       el: $('#card-detail'),
       model: card,
       cardLabelCollection: cardLabelRelationCollection,
@@ -90,9 +91,9 @@ describe('Card detail page test', function() {
 
     cardDetailView.template = jade.compile($('#template-card-detail-view').text());
 
-    window.cantas.isBoardMember = false;
-    spyOn(cantas.utils, 'getCurrentCommentStatus').andReturn('opened');
-    spyOn(cantas.utils, 'getCurrentBoardView').andReturn(boardView);
+    window.<%= namespace %>.isBoardMember = false;
+    spyOn(<%= namespace %>.utils, 'getCurrentCommentStatus').andReturn('opened');
+    spyOn(<%= namespace %>.utils, 'getCurrentBoardView').andReturn(boardView);
     cardDetailView.render();
 
     spyOn(cardDetailView, 'addComment').andCallFake(function() {});

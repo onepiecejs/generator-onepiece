@@ -24,26 +24,24 @@ module.exports = function (grunt) {
       },
       'cantas': {
         src: [
-          'public/javascripts/vendor/jquery/jquery.js',
+          'public/javascripts/vendor/jquery/**/jquery.js',
           'public/javascripts/vendor/jquery.slug.js',
-          'public/javascripts/vendor/async/lib/async.js',
-          'public/javascripts/vendor/markdown/lib/markdown.js',
-          'public/javascripts/vendor/jquery-ui/ui/jquery-ui.js',
-          'public/javascripts/vendor/underscore/underscore.js',
-          'public/javascripts/vendor/backbone/backbone.js',
-          'public/javascripts/vendor/backbone.iobind/dist/backbone.iobind.js',
-          'public/javascripts/vendor/backbone.iobind/dist/backbone.iosync.js',
-          'public/javascripts/vendor/moment/moment.js',
-          'public/javascripts/vendor/bootstrap/dist/js/bootstrap.min.js',
-          'public/javascripts/vendor/SlitSlider/js/modernizr.custom.79639.js',
-          'public/javascripts/vendor/SlitSlider/js/jquery.ba-cond.js',
-          'public/javascripts/vendor/SlitSlider/js/jquery.slitslider.js',
-          'public/javascripts/vendor/blueimp-load-image/js/load-image.min.js',
-          'public/javascripts/vendor/blueimp-file-upload/js/jquery.iframe-transport.js',
-          'public/javascripts/vendor/blueimp-file-upload/js/jquery.fileupload.js',
-          'public/javascripts/vendor/blueimp-file-upload/js/jquery.fileupload-process.js',
-          'public/javascripts/vendor/blueimp-file-upload/js/jquery.fileupload-image.js',
-          'public/javascripts/vendor/blueimp-file-upload/js/jquery.fileupload-validate.js'
+          'public/javascripts/vendor/async/**/async.js',
+          'public/javascripts/vendor/markdown/**/markdown.js',
+          'public/javascripts/vendor/jquery-ui/**/jquery-ui.js',
+          'public/javascripts/vendor/underscore/**/underscore.js',
+          'public/javascripts/vendor/backbone/**/backbone.js',
+          'public/javascripts/vendor/backbone.iobind/**/backbone.iobind.js',
+          'public/javascripts/vendor/backbone.iobind/**/backbone.iosync.js',
+          'public/javascripts/vendor/moment/**/moment.js',
+          'public/javascripts/vendor/bootstrap/**/bootstrap.js',
+          'public/javascripts/vendor/SlitSlider/js/*.js',
+          'public/javascripts/vendor/blueimp-load-image/**/load-image.js',
+          'public/javascripts/vendor/blueimp-file-upload/**/*iframe-transport.js',
+          'public/javascripts/vendor/blueimp-file-upload/**/*fileupload.js',
+          'public/javascripts/vendor/blueimp-file-upload/**/*fileupload-process.js',
+          'public/javascripts/vendor/blueimp-file-upload/**/*fileupload-image.js',
+          'public/javascripts/vendor/blueimp-file-upload/**/*fileupload-validate.js'
         ],
         dest: 'public/javascripts/dist/vendor.js'
       },
@@ -198,5 +196,6 @@ module.exports = function (grunt) {
                                  ]);
   //frontend javascript test
   grunt.registerTask('test', ['jasmine:cantas']);
+
   grunt.registerTask('node', 'simplemocha');
 };
