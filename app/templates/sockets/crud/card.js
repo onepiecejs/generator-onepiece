@@ -10,7 +10,7 @@
   var List = require("../../models/list");
   var Sites = require("../../services/sites");
   var notification = require("../../services/notification");
-  var cantasUtils = require('../../services/utils');
+  var appUtils = require('../../services/utils');
   var signals = require("../signals");
 
   function CardCRUD(options) {
@@ -191,7 +191,7 @@
           if (newAssignees.length) {
             User.find({_id: {$in: newAssignees}}, function(err, users) {
               users.forEach(function(assignee) {
-                var safeTitle = cantasUtils.safeMarkdownString(updatedCard.title);
+                var safeTitle = appUtils.safeMarkdownString(updatedCard.title);
                 var msg = util.format("%s assigned card [%s](%s) to you.",
                   assigner.username, safeTitle, updatedCard.url);
                 if (assigner.username !== assignee.username) {
@@ -227,7 +227,7 @@
           if (removedAssignees.length) {
             User.find({_id: {$in: removedAssignees}}, function(err, users) {
               users.forEach(function(assignee) {
-                var safeTitle = cantasUtils.safeMarkdownString(updatedCard.title);
+                var safeTitle = appUtils.safeMarkdownString(updatedCard.title);
                 var msg = util.format("%s cancel assignment of card [%s](%s) to you.",
                   assigner.username, safeTitle, updatedCard.url);
                 if (assigner.username !== assignee.username) {
