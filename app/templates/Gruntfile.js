@@ -22,7 +22,7 @@ module.exports = function (grunt) {
         separator: ';',
         banner:  '<%= meta.banner %>'
       },
-      'cantas': {
+      'vendor': {
         src: [
           'public/javascripts/vendor/jquery/**/jquery.js',
           'public/javascripts/vendor/jquery.slug.js',
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
         ],
         dest: 'public/javascripts/dist/vendor.js'
       },
-      'cantas-app': {
+      'app': {
         src: [
           'public/javascripts/constants.js',
           'public/javascripts/sortable.js',
@@ -87,7 +87,7 @@ module.exports = function (grunt) {
           'public/javascripts/views/commentConfig.js',
           'public/javascripts/router.js',
         ],
-        dest: 'public/javascripts/dist/cantas-app.js'
+        dest: 'public/javascripts/dist/app.js'
       }
     },
 
@@ -98,13 +98,13 @@ module.exports = function (grunt) {
         squeeze: {dead_code: false},
         codegen: {quote_keys: true}
       },
-      'cantas': {
+      'vendor': {
         src: 'public/javascripts/dist/vendor.js',
         dest: 'public/javascripts/dist/vendor.min.js'
       },
-      'cantas-app': {
-        src: 'public/javascripts/dist/cantas-app.js',
-        dest: 'public/javascripts/dist/cantas-app.min.js'
+      'app': {
+        src: 'public/javascripts/dist/app.js',
+        dest: 'public/javascripts/dist/app.min.js'
       }
     },
 
@@ -119,7 +119,7 @@ module.exports = function (grunt) {
     },
 
     jasmine: {
-      'cantas': {
+      'app': {
         src : [
           'public/javascripts/utils/utils.js',
           'public/javascripts/utils/safe_string.js',
@@ -182,7 +182,7 @@ module.exports = function (grunt) {
       scripts: {
         files: ['spec/javascripts/**/*.spec.js'
           ],
-        tasks: ['jasmine:cantas'],
+        tasks: ['jasmine:app'],
         options: {
           nospawn: true
         }
@@ -191,11 +191,11 @@ module.exports = function (grunt) {
   });
 
   // concat&& uglify task
-  grunt.registerTask('default', ['concat:cantas', 'uglify:cantas', 'concat:cantas-app',
-                                 'uglify:cantas-app', 'jasmine:cantas', 'simplemocha', 'cssmin'
+  grunt.registerTask('default', ['concat:vendor', 'uglify:vendor', 'concat:app',
+                                 'uglify:app', 'jasmine:app', 'simplemocha', 'cssmin'
                                  ]);
   //frontend javascript test
-  grunt.registerTask('test', ['jasmine:cantas']);
+  grunt.registerTask('test', ['jasmine:app']);
 
   grunt.registerTask('node', 'simplemocha');
 };
