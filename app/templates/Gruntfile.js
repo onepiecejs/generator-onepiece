@@ -7,12 +7,31 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     meta: {
       banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %> */'
+    },
+
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc',
+        reporter: require('jshint-stylish')
+      },
+      all: [
+        'app.js',
+        'settings.js',
+        'models/*.js',
+        'public/javascripts/**/*.js',
+        '!public/javascripts/vendor/**/*.js',
+        'routes/*.js',
+        'scripts/*.js',
+        'services/**/*.js',
+        'sockets/**/*.js'
+      ]
     },
 
     concat: {

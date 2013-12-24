@@ -1,6 +1,7 @@
+<% var namespace = _.camelize(appname).toLowerCase(); %>
 <script type="text/javascript">
-  window.cantas = window.cantas || {};
-  cantas.user = {id: "519356d7b3687f5908000001", username: "dxiao"};
+  window.<%= namespace %> = window.<%= namespace %> || {};
+  <%= namespace %>.user = {id: "519356d7b3687f5908000001", username: "dxiao"};
 </script>
 <script id="template-move-to" type="text/template">div.modal-backdrop.fade.in
  div.modal
