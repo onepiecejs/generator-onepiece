@@ -139,50 +139,12 @@ module.exports = function (grunt) {
 
     jasmine: {
       'app': {
-        src : [
-          'public/javascripts/utils/utils.js',
-          'public/javascripts/utils/safe_string.js',
-          'public/javascripts/application.js',
-          'public/javascripts/constants.js',
-          'public/javascripts/models/base.js',
-          'public/javascripts/models/activity.js',
-          'public/javascripts/models/board.js',
-          'public/javascripts/models/list.js',
-          'public/javascripts/models/card.js',
-          'public/javascripts/models/comment.js',
-          'public/javascripts/models/attachment.js',
-          'public/javascripts/models/notification.js',
-          'public/javascripts/models/visitor.js',
-          'public/javascripts/models/boardMember.js',
-          'public/javascripts/models/checklist.js',
-          'public/javascripts/models/label.js',
-          'public/javascripts/models/vote.js',
-          'public/javascripts/models/syncConfig.js',
-          'public/javascripts/views/base.js',
-          'public/javascripts/views/syncConfig.js',
-          'public/javascripts/views/notification.js',
-          'public/javascripts/views/card.js',
-          'public/javascripts/views/comment.js',
-          'public/javascripts/sortable.js',
-          'public/javascripts/router.js',
-          'public/javascripts/views/activity.js',
-          'public/javascripts/views/list.js',
-          'public/javascripts/views/board.js',
-          'public/javascripts/views/boardMembers.js',
-          'public/javascripts/views/boardActiveUsers.js',
-          'public/javascripts/views/confirmDialog.js',
-          'public/javascripts/views/checklist.js',
-          'public/javascripts/views/adminConfig.js',
-          'public/javascripts/views/voteConfig.js',
-          'public/javascripts/views/commentConfig.js',
-          'public/javascripts/views/attachment.js',
-          'public/javascripts/vendor/jquery.fileupload.js'
-        ],
+        src : ['<%= concat.app.src %>'],
         options: {
           specs : ['spec/javascripts/**/*.spec.js'],
           helpers : 'spec/helpers/*.js',
           vendor: ['node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js',
-            'public/javascripts/dist/vendor.js']
+            '<%= concat.vendor.src %>']
         }
       }
     },
@@ -209,12 +171,12 @@ module.exports = function (grunt) {
     }
   });
 
-  // concat&& uglify task
-  grunt.registerTask('default', ['concat:vendor', 'uglify:vendor', 'concat:app',
-                                 'uglify:app', 'jasmine:app', 'simplemocha', 'cssmin'
-                                 ]);
-  //frontend javascript test
-  grunt.registerTask('test', ['jasmine:app']);
-
   grunt.registerTask('node', 'simplemocha');
+
+  grunt.registerTask('test', ['jasmine:app', 'simplemocha']);
+
+  grunt.registerTask('build', ['concat', 'uglify', 'cssmin']);
+
+  grunt.registerTask('default', ['jshint', 'test', 'build']);
+
 };
