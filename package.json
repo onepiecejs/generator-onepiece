@@ -1,13 +1,13 @@
 {
   "name": "generator-onepiece",
-  "version": "0.0.0",
-  "description": "A generator for Yeoman",
+  "version": "0.1.0",
+  "description": "A realtime app generator based on Yeoman",
   "keywords": [
     "realtime",
-    "onepiece-generator"
+    "generator-onepiece"
   ],
-  "homepage": "https://github.com/dabeng/generator-onepiece",
-  "bugs": "https://github.com/dabeng/generator-onepiece/issues",
+  "homepage": "https://github.com/onepiecejs/generator-onepiece",
+  "bugs": "https://github.com/onepiecejs/generator-onepiece/issues",
   "author": {
     "name": "",
     "email": "",
@@ -16,7 +16,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/dabeng/generator-onepiece.git"
+    "url": "git://github.com/onepiecejs/generator-onepiece.git"
   },
   "scripts": {
     "test": "mocha"
