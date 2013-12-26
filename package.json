@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "A generator for Yeoman",
   "keywords": [
-    "yeoman-generator"
+    "realtime",
+    "onepiece-generator"
   ],
   "homepage": "https://github.com/dabeng/generator-onepiece",
   "bugs": "https://github.com/dabeng/generator-onepiece/issues",
