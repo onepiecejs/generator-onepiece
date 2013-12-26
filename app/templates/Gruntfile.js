@@ -1,13 +1,14 @@
+'use strict';
 
 module.exports = function (grunt) {
-
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-simple-mocha');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-shell');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -139,12 +140,24 @@ module.exports = function (grunt) {
           nospawn: true
         }
       }
+    },
+
+    shell: {
+      launchExpress: {
+        options: {
+          stdout: true
+        },
+        command: 'node app.js'
+      }
     }
+
   });
 
   grunt.registerTask('node', 'simplemocha');
 
   grunt.registerTask('test', ['jasmine:app', 'simplemocha']);
+
+  grunt.registerTask('start', ['shell:launchExpress']);
 
   grunt.registerTask('build', ['concat', 'uglify', 'cssmin']);
 
