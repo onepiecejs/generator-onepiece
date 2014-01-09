@@ -45,6 +45,7 @@ OnepieceGenerator.prototype.askFor = function askFor() {
 OnepieceGenerator.prototype.app = function app() {
   this.directory('models', 'models');
   this.directory('public', 'public');
+  this.mkdir('public/attachments');
   this.directory('routes', 'routes');
   this.directory('scripts', 'scripts');
   this.directory('services', 'services');
